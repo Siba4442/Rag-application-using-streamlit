@@ -8,4 +8,3 @@ streamlit
 python-dotenv
 pinecone
 langchain_pinecone
-typing
