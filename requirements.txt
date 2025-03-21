@@ -1,0 +1,13 @@
+chromadb
+langchain
+langchain-community
+langchain-huggingface
+langchain-groq
+langgraph
+streamlit
+python-dotenv
+pymupdf
+tempfile
+pinecone
+langchain_pinecone
+typing
