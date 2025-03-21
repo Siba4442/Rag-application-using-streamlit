@@ -1,3 +1,4 @@
+python==3.12.9
 langchain
 langchain-community
 langchain-huggingface
@@ -5,7 +6,6 @@ langchain-groq
 langgraph
 streamlit
 python-dotenv
-tempfile
 pinecone
 langchain_pinecone
 typing
