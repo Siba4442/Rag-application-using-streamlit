@@ -5,7 +5,6 @@ import re
 import tempfile
 from typing import List
 from langchain_community.document_loaders import PyMuPDFLoader
-from chromadb.utils.embedding_functions import create_langchain_embedding
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pinecone import Pinecone, ServerlessSpec
@@ -50,8 +49,9 @@ def pdf_chunk(document: list):
     )
     return text_splitter.split_documents(document)
 
-def get_langchain_embedding() -> List[List[float]]:
-    """Loads the HuggingFace embedding model."""
+
+def create_update_vectorstore(chunked_documents, index_name):
+    """Creates or updates a Pinecone vector store with document embeddings."""
     model_name = "sentence-transformers/all-mpnet-base-v2"
     encode_kwargs = {'normalize_embeddings': False}
 
@@ -59,12 +59,7 @@ def get_langchain_embedding() -> List[List[float]]:
         model_name=model_name,
         encode_kwargs=encode_kwargs
     )
-    return create_langchain_embedding(embeddings)
-
-def create_update_vectorstore(chunked_documents, index_name):
-    """Creates or updates a Pinecone vector store with document embeddings."""
-    embeddings = get_langchain_embedding()
-
+    
     vector_store = PineconeVectorStore.from_documents(
         documents=chunked_documents,
         embedding=embeddings,
