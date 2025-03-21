@@ -5,5 +5,5 @@ langchain-groq
 langgraph
 streamlit
 python-dotenv
-pinecone==6.0.2
+pinecone
 langchain-pinecone==0.2.3
